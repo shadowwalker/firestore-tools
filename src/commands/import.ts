@@ -14,26 +14,36 @@ const setCollection = async (
       if (v !== null && typeof v === 'object') {
         if ('_segments' in v && Array.isArray(v['_segments'])) {
           const reference = db.doc(`/${v['_segments'].join('/')}`)
-          data = {...data, [k]: reference}
+          data = { ...data, [k]: reference }
           continue
         } else if ('_latitude' in v && '_longitude' in v) {
-          const geopoint = new firebase.firestore.GeoPoint(v['_latitude'], v['_longitude'])
-          data = {...data, [k]: geopoint}
+          const geopoint = new firebase.firestore.GeoPoint(
+            v['_latitude'],
+            v['_longitude']
+          )
+          data = { ...data, [k]: geopoint }
           continue
         } else if ('_seconds' in v && '_nanoseconds' in v) {
-          const timestamp = new firebase.firestore.Timestamp(v['_seconds'], v['_nanoseconds'])
-          data = {...data, [k]: timestamp}
+          const timestamp = new firebase.firestore.Timestamp(
+            v['_seconds'],
+            v['_nanoseconds']
+          )
+          data = { ...data, [k]: timestamp }
           continue
         }
       }
-      
-      data = {...data, [k]: v}
+
+      data = { ...data, [k]: v }
     }
 
     await collection.doc(id).set(data)
     if ('_collections' in documents[id]) {
       for (const cid in documents[id]['_collections']) {
-        setCollection(db, doc.collection(cid), documents[id]['_collections'][cid])
+        setCollection(
+          db,
+          doc.collection(cid),
+          documents[id]['_collections'][cid]
+        )
       }
     }
   }
@@ -62,7 +72,7 @@ const command: GluegunCommand = {
     const collections = await fs.readJson(json)
 
     const spin = print.spin('Importing')
-    for(const id in collections) {
+    for (const id in collections) {
       await setCollection(db, db.collection(id), collections[id])
     }
     spin.succeed('Completed')

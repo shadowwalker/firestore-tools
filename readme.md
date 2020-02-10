@@ -35,6 +35,8 @@ npx firestore-tools ...
 
 Go to [GCP IAM & Identity Console](https://console.cloud.google.com/iam-admin/serviceaccounts), select your firebase project on the top. Then select the `firebase adminsdk` service account, create a private key and download the JSON file. This file will be used to authenticate the CLI to access firestore database with admin access.
 
+![firebase-service-account](https://github.com/shadowwalker/firestore-tools/blob/master/res/img/service-account.png?raw=true)
+
 ## Export
 
 ``` bash

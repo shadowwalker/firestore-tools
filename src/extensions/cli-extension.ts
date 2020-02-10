@@ -19,7 +19,7 @@ export default (toolbox: GluegunToolbox): void => {
       message = '',
       required = true,
       initial,
-      type='input'
+      type = 'input'
     } = options
 
     const { print, parameters, prompt } = toolbox
