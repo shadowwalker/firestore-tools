@@ -1,15 +1,20 @@
 {
   "name": "firestore-tools",
   "version": "0.0.1",
-  "description": "firestore-tools CLI",
-  "private": true,
+  "repository": "https://github.com/shadowwalker/firestore-tools#readme",
+  "description": "firestore CLI toolbox",
   "types": "build/types/types.d.ts",
   "bin": {
     "firestore-tools": "bin/firestore-tools"
   },
+  "keywords": [
+    "firebase",
+    "firestore",
+    "GCP"
+  ],
   "scripts": {
-    "format": "prettier --write **/*.{js,ts,tsx,json}",
-    "lint": "tslint -p .",
+    "format": "prettier --write **/*.{js,ts,json}",
+    "lint": "eslint . --ext .js,.ts",
     "clean-build": "rm -rf ./build",
     "compile": "tsc -p .",
     "copy-templates": "if [ -e ./src/templates ]; then cp -a ./src/templates ./build/; fi",
@@ -21,30 +26,27 @@
     "coverage": "jest --coverage"
   },
   "files": [
-    "tsconfig.json",
-    "tslint.json",
     "build",
-    "LICENSE",
-    "readme.md",
-    "docs",
     "bin"
   ],
   "license": "MIT",
   "dependencies": {
     "firebase-admin": "^8.9.2",
+    "fs-extra": "^8.1.0",
     "gluegun": "latest"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.11",
-    "jest": "^24.1.0",
-    "prettier": "^1.12.1",
-    "ts-jest": "^24.1.0",
-    "ts-node": "^8.4.1",
-    "tslint": "^5.12.0",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.6.3"
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
   },
   "jest": {
     "preset": "ts-jest",

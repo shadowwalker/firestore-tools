@@ -1,21 +1,15 @@
-import { build } from 'gluegun'
+import { build, GluegunToolbox } from 'gluegun'
 
-async function run(argv) {
+async function run(argv): Promise<GluegunToolbox> {
   const cli = build()
     .brand('firestore-tools')
     .src(__dirname)
     .plugins('./node_modules', { matching: 'firestore-tools-*', hidden: true })
-    .help() // provides default for help, h, --help, -h
-    .version() // provides default for version, v, --version, -v
+    .help()
+    .version()
     .create()
-  // enable the following method if you'd like to skip loading one of these core extensions
-  // this can improve performance if they're not necessary for your project:
-  // .exclude(['meta', 'strings', 'print', 'filesystem', 'semver', 'system', 'prompt', 'http', 'template', 'patching'])
-  // and run it
-  const toolbox = await cli.run(argv)
 
-  // send it back (for testing, mostly)
-  return toolbox
+  return await cli.run(argv)
 }
 
 module.exports = { run }
