@@ -61,6 +61,7 @@ export default (toolbox: GluegunToolbox): void => {
     print.info(`Intialize firebase app with project id: ${key['project_id']}`)
 
     firebase.initializeApp({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       credential: firebase.credential.cert(key as any)
     })
 
