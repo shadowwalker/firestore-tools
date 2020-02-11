@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "repository": "https://github.com/shadowwalker/firestore-tools#readme",
   "description": "firestore CLI toolbox",
+  "main": "build/cli.js",
   "types": "build/types/types.d.ts",
   "bin": {
     "firestore-tools": "bin/firestore-tools"
@@ -18,7 +19,6 @@
     "clean-build": "rm -rf ./build",
     "compile": "tsc -p .",
     "build": "yarn format && yarn lint && yarn clean-build && yarn compile",
-    "prepublishOnly": "yarn build",
     "test": "jest",
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
@@ -37,8 +37,8 @@
   "devDependencies": {
     "@types/jest": "^25.1.2",
     "@types/node": "^12.12.26",
-    "@typescript-eslint/eslint-plugin": "^2.19.0",
-    "@typescript-eslint/parser": "^2.19.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "jest": "^25.1.0",
