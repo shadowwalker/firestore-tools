@@ -8,7 +8,7 @@ const setCollection = async (
   documents: object
 ): Promise<void> => {
   for (const id in documents) {
-    const doc = collection.doc(id)
+    const doc = id === '_random' ? collection.doc() : collection.doc(id)
     let data = {}
     for (const [k, v] of Object.entries(documents[id]['_data'])) {
       if (v !== null && typeof v === 'object') {
@@ -36,7 +36,7 @@ const setCollection = async (
       data = { ...data, [k]: v }
     }
 
-    await collection.doc(id).set(data)
+    await doc.set(data)
     if ('_collections' in documents[id]) {
       for (const cid in documents[id]['_collections']) {
         setCollection(
